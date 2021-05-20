@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+        <title>VUE Books</title>
+    </head>
+    <body>
+        <div id="app">
+            <div class="sidebar-left">
+                <!-- 
+                <div class="book active">
+                    If minds had toes
+                </div>
+                <div class="book">
+                    Metro 2033
+                </div>
+                <div class="book">
+                    Without a country
+                </div> 
+                -->
+                <div v-for="(book, index) in books" class="book"
+                    :class="(index == activeIndex) ? 'active' : ''"
+                    @click="setActive(index)"
+                    >
+                    {{ book.title }}
+                </div>
+            </div>
+            <div class="sidebar-right">
+                <h1>{{ books[activeIndex].title }}</h1>
+                <h2>{{ books[activeIndex].author }}</h2>
+                <h3 v-if="books[activeIndex].year > 0">Anno: {{ books[activeIndex].year }}</h3>
+                <img :src="getImage()">
+            </div>
+        </div>
+    
+        <script src="js/main.js"></script>    
+    </body>
+</html>
